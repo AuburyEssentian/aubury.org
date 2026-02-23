@@ -30,7 +30,7 @@ const config: Config = {
       {
         docs: false, // Disable docs, we're blog-only
         blog: {
-          routeBasePath: '/', // Blog at root
+          routeBasePath: 'blog',
           showReadingTime: true,
           blogSidebarTitle: 'All posts',
           blogSidebarCount: 'ALL',
@@ -62,7 +62,7 @@ const config: Config = {
         src: 'img/logo.svg',
       },
       items: [
-        {to: '/', label: 'Blog', position: 'left'},
+        {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/AuburyEssentian',
           label: 'GitHub',
@@ -78,7 +78,7 @@ const config: Config = {
           items: [
             {
               label: 'Blog',
-              to: '/',
+              to: '/blog',
             },
           ],
         },
