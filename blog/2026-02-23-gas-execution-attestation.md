@@ -12,6 +12,8 @@ They're not. The correlation between MEV block value and `newPayload` execution 
 
 What actually predicts execution latency is simpler and more boring: how much gas the block used.
 
+<!-- truncate -->
+
 ![Gas utilization vs execution time and head vote accuracy](/img/gas_execution_attestation.png)
 
 At 30–40% gas utilization (the typical block), average `newPayload` duration is **93ms**. At 90–100% utilization (full 60M gas), it's **188ms** — a clean 2.03× slowdown. And it's not just the mean: at full utilization, 29.5% of blocks take over 200ms to execute, versus about 2% for lighter blocks. The p95 for full-gas blocks sits at 483ms.

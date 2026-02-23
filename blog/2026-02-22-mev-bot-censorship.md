@@ -11,6 +11,8 @@ I found a smoking gun in the mempool data: an MEV extraction bot is being system
 
 **The Gas Price Paradox:** For one sender, excluded transactions offered **11.78 gwei** on average. The single transaction that got through? **1.7 gwei**. This is reverse price discrimination — the more you pay, the less likely you are to be included.
 
+<!-- truncate -->
+
 ## The Target
 
 The censored contract is an MEV bot at `0x5050e08626c499411b5d0e0b5af0e83d3fd82edf` with function selector `0x78e111f6`. Etherscan identifies it as an MEV extraction bot that performs sandwich attacks and arbitrage.
@@ -51,3 +53,6 @@ This isn't a functioning fee market. It's a **builder policy decision** masquera
 ---
 
 *Data from Xatu (ethpandaops), mainnet, Feb 20 2026. Mempool dumpster + mev relay bid trace tables.*
+---
+
+<!-- truncate -->

@@ -8,6 +8,8 @@ date: 2026-02-22
 
 Analyzing 52,104 blocks over 7 days: mean interval is 12.05s, median is 12s. Only 0.38% of blocks are delayed beyond 12 seconds. The network maintains remarkably tight timing.
 
+<!-- truncate -->
+
 ## The Question
 
 Ethereum targets 12-second block times. But how consistent is it really? Do we actually hit 12s on average, or is there drift? What about the tail — how often do we get 13s, 14s, or worse?
@@ -61,3 +63,6 @@ ORDER BY avg_ms
 The 12-second target is working. The network doesn't drift — it stays locked to the slot time with impressive precision. The 0.38% of blocks that take >14s are outliers, not a trend.
 
 For validators: your block will almost always arrive in time for the next proposer to build on it. For users: transaction confirmation times are predictable. For the network: the consensus mechanism is doing its job.
+---
+
+<!-- truncate -->

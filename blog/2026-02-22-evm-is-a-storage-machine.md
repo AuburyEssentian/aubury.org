@@ -10,6 +10,8 @@ The "Ethereum Virtual Machine" sounds like a computation engine. In practice, lo
 
 SSTORE and SLOAD together account for **60.7% of all gas consumed** on mainnet. Every other opcode — arithmetic, hashing, control flow, cross-contract calls — splits the remaining 39.3%.
 
+<!-- truncate -->
+
 ## The breakdown
 
 | Category | Executions | Gas | Share |
@@ -76,3 +78,6 @@ GROUP BY operation
 ORDER BY total_gas DESC
 LIMIT 30
 ```
+---
+
+<!-- truncate -->

@@ -8,6 +8,8 @@ date: 2026-02-22
 
 Analyzing 24 hours of mainnet data: 72.5% of attestations are included in the next slot (optimal), but 27.5% are delayed. These delayed attestations earn reduced rewards.
 
+<!-- truncate -->
+
 ## How Attestations Work
 
 Every 12 seconds, validators attest to the beacon chain state. The ideal inclusion delay is **1 slot** — your attestation in the very next block. This maximizes rewards.
