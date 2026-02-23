@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root {
+  /* Dark theme as default (Aubury's aesthetic) */
+  --ifm-color-primary: #a855f7;
+  --ifm-color-primary-dark: #9333ea;
+  --ifm-color-primary-darker: #7e22ce;
+  --ifm-color-primary-darkest: #6b21a8;
+  --ifm-color-primary-light: #c084fc;
+  --ifm-color-primary-lighter: #d8b4fe;
+  --ifm-color-primary-lightest: #f3e8ff;
+  
+  /* Background colors - dark theme */
+  --ifm-background-color: #0a0a0f;
+  --ifm-background-surface-color: #111111;
+  --ifm-navbar-background-color: #0a0a0f;
+  --ifm-footer-background-color: #0a0a0f;
+  
+  /* Text colors */
+  --ifm-font-color-base: #e5e5e5;
+  --ifm-font-color-secondary: #a3a3a3;
+  --ifm-heading-color: #ffffff;
+  
+  /* Font families - Anthropic style */
+  --ifm-font-family-base: 'Source Serif 4', Georgia, serif;
+  --ifm-font-family-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --ifm-font-family-monospace: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  
+  /* Code */
+  --ifm-code-font-size: 90%;
+  --docusaurus-highlighted-code-line-bg: rgba(168, 85, 247, 0.1);
+  
+  /* Spacing */
+  --ifm-spacing-horizontal: 1.5rem;
+  --ifm-spacing-vertical: 1rem;
+  
+  /* Links */
+  --ifm-link-color: #c084fc;
+  --ifm-link-hover-color: #d8b4fe;
+  
+  /* Borders */
+  --ifm-color-emphasis-200: #27273a;
+  --ifm-color-emphasis-300: #3f3f5f;
+}
+
+/* Force dark mode */
+[data-theme='dark'] {
+  --ifm-color-primary: #a855f7;
+  --ifm-color-primary-dark: #9333ea;
+  --ifm-color-primary-darker: #7e22ce;
+  --ifm-color-primary-darkest: #6b21a8;
+  --ifm-color-primary-light: #c084fc;
+  --ifm-color-primary-lighter: #d8b4fe;
+  --ifm-color-primary-lightest: #f3e8ff;
+  --ifm-background-color: #0a0a0f;
+  --ifm-navbar-background-color: #0a0a0f;
+  --ifm-footer-background-color: #0a0a0f;
+  --docusaurus-highlighted-code-line-bg: rgba(168, 85, 247, 0.15);
+}
+
+/* Typography - headings use Inter (Styrene-like) */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ifm-font-family-heading);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.75rem;
+  line-height: 1.3;
+  margin-top: 2.5rem;
+}
+
+/* Body text uses Source Serif (Tiempos-like) */
+body {
+  font-family: var(--ifm-font-family-base);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Blog post title styling */
+.blog-post-title {
+  font-family: var(--ifm-font-family-heading);
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+/* Blog list styling */
+.blog-list-page article {
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.blog-list-page article:last-child {
+  border-bottom: none;
+}
+
+/* Navbar styling */
+.navbar {
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  box-shadow: none;
+}
+
+.navbar__title {
+  font-family: var(--ifm-font-family-heading);
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.navbar__link {
+  font-family: var(--ifm-font-family-heading);
+  font-weight: 500;
+}
+
+/* Footer styling */
+.footer {
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+/* Code blocks */
+pre {
+  background: #111111;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+}
+
+code {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.875rem;
+  background: #1a1a25;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+}
+
+/* Links */
+a {
+  transition: color 0.2s ease;
+}
+
+/* Blog post metadata */
+.blog-post-date {
+  font-family: var(--ifm-font-family-heading);
+  font-size: 0.875rem;
+  color: var(--ifm-font-color-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Reading time */
+.blog-post-reading-time {
+  font-family: var(--ifm-font-family-heading);
+  font-size: 0.875rem;
+  color: var(--ifm-font-color-secondary);
+}
+
+/* Pagination */
+.pagination-nav__link {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+}
+
+/* Tables */
+table {
+  font-family: var(--ifm-font-family-heading);
+  font-size: 0.9rem;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 3px solid var(--ifm-color-primary);
+  background: rgba(168, 85, 247, 0.05);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+}
+
+/* Images */
+img {
+  border-radius: 8px;
+}
+
+/* Sidebar */
+.blog-sidebar {
+  font-family: var(--ifm-font-family-heading);
+}
+
+/* Tags */
+.tag {
+  font-family: var(--ifm-font-family-heading);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
