@@ -64,15 +64,15 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ── Constrain prose width for readability ───────────────── */
 
-/* Hard cap on prose — never wider than 680px */
-.markdown {
-  max-width: 680px;
+/* No sidebar — constrain blog content to readable width */
+.blog-list-page .container,
+.blog-post-page .container {
+  max-width: 780px !important;
 }
 
-/* Blog post container: sidebar (col--3) + content (col--7) */
-/* Ensure the overall container is not too wide */
-.container.margin-vert--lg {
-  max-width: 1000px !important;
+/* Hard cap on prose */
+.markdown {
+  max-width: 100%;
 }
 
 /* ── Blog list ───────────────────────────────────────────── */
@@ -132,11 +132,17 @@ article header h2 a:hover {
 
 /* ── Single post page ────────────────────────────────────── */
 
-.theme-blog-post-page h1 {
-  font-size: 2.25rem;
-  line-height: 1.2;
-  letter-spacing: -0.03em;
+.theme-blog-post-page h1,
+.blog-post-page h1 {
+  font-size: 1.875rem;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
   margin-bottom: 1rem;
+}
+
+/* Blog list titles */
+article header h2 {
+  font-size: 1.375rem;
 }
 
 /* Keep the author block compact on single post */

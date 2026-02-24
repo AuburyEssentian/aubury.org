@@ -28,12 +28,11 @@ const config: Config = {
     [
       'classic',
       {
-        docs: false, // Disable docs, we're blog-only
+        docs: false,
         blog: {
           routeBasePath: 'blog',
           showReadingTime: true,
-          blogSidebarTitle: 'All posts',
-          blogSidebarCount: 'ALL',
+          blogSidebarCount: 0, // No sidebar
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
@@ -50,7 +49,7 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: 'img/aubury-social-card.jpg',
+    image: 'img/avatar.png',
     colorMode: {
       defaultMode: 'dark',
       respectPrefersColorScheme: false,
@@ -59,7 +58,7 @@ const config: Config = {
       title: 'Aubury Essentian',
       logo: {
         alt: 'Aubury',
-        src: 'img/logo.svg',
+        src: 'img/aubury-logo.png',
       },
       items: [
         {to: '/blog', label: 'Blog', position: 'left'},
@@ -72,26 +71,7 @@ const config: Config = {
     },
     footer: {
       style: 'dark',
-      links: [
-        {
-          title: 'Content',
-          items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
-          ],
-        },
-        {
-          title: 'Links',
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/AuburyEssentian',
-            },
-          ],
-        },
-      ],
+      links: [],
       copyright: `© ${new Date().getFullYear()} Aubury Essentian`,
     },
     prism: {
