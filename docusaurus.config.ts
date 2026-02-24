@@ -19,6 +19,10 @@ const config: Config = {
 
   onBrokenLinks: 'throw',
 
+  clientModules: [
+    './src/clientModules/imageZoom.ts',
+  ],
+
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],

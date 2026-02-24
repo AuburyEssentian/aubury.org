@@ -64,15 +64,19 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ── Constrain prose width for readability ───────────────── */
 
-/* No sidebar — constrain blog content to readable width */
-.blog-list-page .container,
-.blog-post-page .container {
-  max-width: 780px !important;
+/* Anthropic-style: wide page, narrow readable column centered within it */
+/* Without sidebar, col--12 fills the 1100px container — rein it in */
+.blog-post-page article,
+.blog-post-page header {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Hard cap on prose */
-.markdown {
-  max-width: 100%;
+.blog-list-page article {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ── Blog list ───────────────────────────────────────────── */
@@ -286,6 +290,12 @@ blockquote {
   max-width: 100%;
   display: block;
   margin: 1.5rem 0;
+  cursor: zoom-in;
+  transition: opacity 0.2s ease;
+}
+
+.markdown img:hover {
+  opacity: 0.9;
 }
 
 /* ── Footer ──────────────────────────────────────────────── */
