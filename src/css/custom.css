@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap');
 
 :root {
-  /* Dark theme as default (Aubury's aesthetic) */
   --ifm-color-primary: #a855f7;
   --ifm-color-primary-dark: #9333ea;
   --ifm-color-primary-darker: #7e22ce;
@@ -9,94 +8,121 @@
   --ifm-color-primary-light: #c084fc;
   --ifm-color-primary-lighter: #d8b4fe;
   --ifm-color-primary-lightest: #f3e8ff;
-  
-  /* Background colors - dark theme */
-  --ifm-background-color: #0a0a0f;
-  --ifm-background-surface-color: #111111;
-  --ifm-navbar-background-color: #0a0a0f;
-  --ifm-footer-background-color: #0a0a0f;
-  
-  /* Text colors */
-  --ifm-font-color-base: #e5e5e5;
-  --ifm-font-color-secondary: #a3a3a3;
-  --ifm-heading-color: #ffffff;
-  
-  /* Font families - Anthropic style */
+
+  --ifm-background-color: #111113;
+  --ifm-background-surface-color: #18181b;
+  --ifm-navbar-background-color: #111113;
+  --ifm-footer-background-color: #111113;
+
+  --ifm-font-color-base: #d4d4d8;
+  --ifm-font-color-secondary: #71717a;
+  --ifm-heading-color: #fafafa;
+
   --ifm-font-family-base: 'Source Serif 4', Georgia, serif;
   --ifm-font-family-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --ifm-font-family-monospace: 'SF Mono', Monaco, 'Cascadia Code', monospace;
-  
-  /* Code */
-  --ifm-code-font-size: 90%;
+  --ifm-font-family-monospace: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+
+  --ifm-font-size-base: 1.125rem;
+  --ifm-line-height-base: 1.75;
+
+  --ifm-code-font-size: 0.875rem;
   --docusaurus-highlighted-code-line-bg: rgba(168, 85, 247, 0.1);
-  
-  /* Spacing */
-  --ifm-spacing-horizontal: 1.5rem;
-  --ifm-spacing-vertical: 1rem;
-  
-  /* Links */
+
   --ifm-link-color: #c084fc;
   --ifm-link-hover-color: #d8b4fe;
-  
-  /* Borders */
-  --ifm-color-emphasis-200: #27273a;
-  --ifm-color-emphasis-300: #3f3f5f;
+
+  --ifm-color-emphasis-200: #27272a;
+  --ifm-color-emphasis-300: #3f3f46;
+
+  /* Constrain readable line length across the board */
+  --ifm-container-width: 1100px;
+  --ifm-container-width-xl: 1100px;
 }
 
-/* Force dark mode */
 [data-theme='dark'] {
   --ifm-color-primary: #a855f7;
-  --ifm-color-primary-dark: #9333ea;
-  --ifm-color-primary-darker: #7e22ce;
-  --ifm-color-primary-darkest: #6b21a8;
-  --ifm-color-primary-light: #c084fc;
-  --ifm-color-primary-lighter: #d8b4fe;
-  --ifm-color-primary-lightest: #f3e8ff;
-  --ifm-background-color: #0a0a0f;
-  --ifm-navbar-background-color: #0a0a0f;
-  --ifm-footer-background-color: #0a0a0f;
+  --ifm-background-color: #111113;
+  --ifm-navbar-background-color: #111113;
+  --ifm-footer-background-color: #111113;
   --docusaurus-highlighted-code-line-bg: rgba(168, 85, 247, 0.15);
 }
 
-/* Typography - headings use Inter (Styrene-like) */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--ifm-font-family-heading);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
+/* ── Base typography ──────────────────────────────────────── */
 
-h1 {
-  font-size: 2.5rem;
-  line-height: 1.2;
-}
-
-h2 {
-  font-size: 1.75rem;
-  line-height: 1.3;
-  margin-top: 2.5rem;
-}
-
-/* Body text uses Source Serif (Tiempos-like) */
 body {
   font-family: var(--ifm-font-family-base);
-  font-size: 1.125rem;
-  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Blog post title styling */
-.blog-post-title {
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--ifm-font-family-heading);
-  font-size: 2.25rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ifm-heading-color);
 }
 
-/* Blog list styling */
+/* ── Constrain prose width for readability ───────────────── */
+
+/* Hard cap on prose — never wider than 680px */
+.markdown {
+  max-width: 680px;
+}
+
+/* Blog post container: sidebar (col--3) + content (col--7) */
+/* Ensure the overall container is not too wide */
+.container.margin-vert--lg {
+  max-width: 1000px !important;
+}
+
+/* ── Blog list ───────────────────────────────────────────── */
+
+/* Remove avatar from list view — it's noise */
+.blog-list-page .avatar {
+  display: none;
+}
+
+article header h2 {
+  font-family: var(--ifm-font-family-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+article header h2 a {
+  color: var(--ifm-heading-color);
+  text-decoration: none;
+}
+
+article header h2 a:hover {
+  color: var(--ifm-color-primary-light);
+}
+
+/* Metadata row — date, reading time */
+.blog-post-info, .blog-post-date, time {
+  font-family: var(--ifm-font-family-heading);
+  font-size: 0.8125rem;
+  color: var(--ifm-font-color-secondary);
+  letter-spacing: 0.01em;
+}
+
+/* Tags */
+.tag, .tags_node_modules\\@docusaurus\\theme-classic__blog-tags,
+.tag_node_modules\\@docusaurus__theme-classic__blog-tags {
+  font-family: var(--ifm-font-family-heading);
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: 4px;
+}
+
+/* Separator between posts */
 .blog-list-page article {
-  margin-bottom: 3rem;
-  padding-bottom: 3rem;
+  padding-bottom: 2.5rem;
+  margin-bottom: 2.5rem;
   border-bottom: 1px solid var(--ifm-color-emphasis-200);
 }
 
@@ -104,105 +130,197 @@ body {
   border-bottom: none;
 }
 
-/* Navbar styling */
+/* ── Single post page ────────────────────────────────────── */
+
+.theme-blog-post-page h1 {
+  font-size: 2.25rem;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+/* Keep the author block compact on single post */
+.theme-blog-post-page .avatar__intro .avatar__name {
+  font-family: var(--ifm-font-family-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.theme-blog-post-page .avatar__intro .avatar__subtitle {
+  font-family: var(--ifm-font-family-heading);
+  font-size: 0.8rem;
+  color: var(--ifm-font-color-secondary);
+}
+
+.theme-blog-post-page .avatar__photo {
+  width: 36px;
+  height: 36px;
+}
+
+/* Paragraph spacing */
+.markdown p {
+  margin-bottom: 1.25rem;
+}
+
+/* H2 spacing inside posts */
+.markdown h2 {
+  font-size: 1.375rem;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.markdown h3 {
+  font-size: 1.1rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Code ────────────────────────────────────────────────── */
+
+pre {
+  background: #18181b !important;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+code {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.85em;
+  background: #27272a;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  color: #d4d4d8;
+}
+
+pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* ── Navbar ──────────────────────────────────────────────── */
+
 .navbar {
   border-bottom: 1px solid var(--ifm-color-emphasis-200);
   box-shadow: none;
+  padding: 0 1.5rem;
 }
 
 .navbar__title {
   font-family: var(--ifm-font-family-heading);
   font-weight: 600;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .navbar__link {
   font-family: var(--ifm-font-family-heading);
+  font-size: 0.9rem;
   font-weight: 500;
 }
 
-/* Footer styling */
-.footer {
-  border-top: 1px solid var(--ifm-color-emphasis-200);
-}
+/* ── Sidebar ─────────────────────────────────────────────── */
 
-/* Code blocks */
-pre {
-  background: #111111;
-  border: 1px solid var(--ifm-color-emphasis-200);
-  border-radius: 8px;
-}
-
-code {
-  font-family: var(--ifm-font-family-monospace);
-  font-size: 0.875rem;
-  background: #1a1a25;
-  padding: 0.2em 0.4em;
-  border-radius: 4px;
-}
-
-pre code {
-  background: transparent;
-  padding: 0;
-}
-
-/* Links */
-a {
-  transition: color 0.2s ease;
-}
-
-/* Blog post metadata */
-.blog-post-date {
+.blog-sidebar-item {
   font-family: var(--ifm-font-family-heading);
-  font-size: 0.875rem;
-  color: var(--ifm-font-color-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-size: 0.85rem;
 }
 
-/* Reading time */
-.blog-post-reading-time {
-  font-family: var(--ifm-font-family-heading);
-  font-size: 0.875rem;
-  color: var(--ifm-font-color-secondary);
-}
+/* ── Tables ──────────────────────────────────────────────── */
 
-/* Pagination */
-.pagination-nav__link {
-  border: 1px solid var(--ifm-color-emphasis-200);
-  border-radius: 8px;
-}
-
-/* Tables */
 table {
   font-family: var(--ifm-font-family-heading);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1.5rem;
 }
 
-/* Blockquotes */
+th {
+  font-weight: 600;
+  text-align: left;
+  padding: 0.625rem 1rem;
+  background: #18181b;
+  border-bottom: 2px solid var(--ifm-color-emphasis-300);
+  color: var(--ifm-heading-color);
+  letter-spacing: 0.02em;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+td {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* ── Blockquotes ─────────────────────────────────────────── */
+
 blockquote {
   border-left: 3px solid var(--ifm-color-primary);
-  background: rgba(168, 85, 247, 0.05);
-  padding: 1rem 1.5rem;
+  background: rgba(168, 85, 247, 0.04);
+  padding: 0.75rem 1.25rem;
   margin: 1.5rem 0;
-  border-radius: 0 8px 8px 0;
+  border-radius: 0 4px 4px 0;
+  font-style: italic;
 }
 
-/* Images */
-img {
-  border-radius: 8px;
+/* ── Images ──────────────────────────────────────────────── */
+
+.markdown img {
+  border-radius: 6px;
+  max-width: 100%;
+  display: block;
+  margin: 1.5rem 0;
 }
 
-/* Sidebar */
-.blog-sidebar {
+/* ── Footer ──────────────────────────────────────────────── */
+
+.footer {
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  padding: 2rem 1.5rem;
+}
+
+.footer__title {
   font-family: var(--ifm-font-family-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ifm-font-color-secondary);
 }
 
-/* Tags */
-.tag {
+.footer__link-item {
+  font-family: var(--ifm-font-family-heading);
+  font-size: 0.875rem;
+}
+
+/* ── Pagination ──────────────────────────────────────────── */
+
+.pagination-nav__link {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 6px;
+  background: transparent;
+}
+
+.pagination-nav__sublabel {
   font-family: var(--ifm-font-family-heading);
   font-size: 0.75rem;
-  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
+  color: var(--ifm-font-color-secondary);
+}
+
+.pagination-nav__label {
+  font-family: var(--ifm-font-family-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
 }
