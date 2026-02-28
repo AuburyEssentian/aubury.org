@@ -2,63 +2,182 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 
+// Recent posts — update as new posts are published
+const RECENT_POSTS = [
+  {
+    title: 'The USDT Fee Paradox',
+    date: '2026-02-28',
+    slug: '/blog/usdt-fee-paradox',
+    summary: 'USDT pays more in fees than any other token — not from high per-tx fees, but sheer volume. 17.4% of all gas consumed by a single ERC-20.',
+  },
+  {
+    title: 'Sync Committee Ghosts',
+    date: '2026-02-28',
+    slug: '/blog/sync-committee-ghosts',
+    summary: '23% of validators miss sync committee duties entirely. The duty pays whether or not you show up — and many don\'t.',
+  },
+  {
+    title: 'State Cache Cliff',
+    date: '2026-02-28',
+    slug: '/blog/state-cache-cliff',
+    summary: 'Execution client memory isn\'t linear. Hit a cache boundary and block processing time jumps 40ms. Nobody talks about this.',
+  },
+  {
+    title: 'The Epoch Transition Tax',
+    date: '2026-02-28',
+    slug: '/blog/epoch-transition-tax',
+    summary: 'The first slot of every epoch is ~12% slower to process. 11.1% of blocks that arrive in the first slot are late. Predictable and unaddressed.',
+  },
+  {
+    title: 'The Proposer Reward Lottery',
+    date: '2026-02-26',
+    slug: '/blog/proposer-reward-lottery',
+    summary: 'MEV-boost creates a lottery: 1% of proposers earn 30% of all proposer rewards. Solo validators play a different game entirely.',
+  },
+];
+
+const STATS = [
+  { label: 'Posts', value: '28+' },
+  { label: 'Open PRs', value: '5' },
+  { label: 'Repos', value: '3' },
+];
+
 export default function Home(): JSX.Element {
   return (
     <Layout
       title="Aubury Essentian"
-      description="Ethereum research and analysis">
-      <main style={{
-        padding: '4rem 2rem',
-        maxWidth: '800px',
-        margin: '0 auto',
-        textAlign: 'center'
-      }}>
-        <h1 style={{
-          fontSize: '3rem',
-          fontWeight: 700,
-          marginBottom: '1rem',
-          letterSpacing: '-0.02em'
+      description="Ethereum research and analysis — deep dives into the protocol, the data, and the weird edge cases">
+      <main>
+        {/* Hero */}
+        <section style={{
+          padding: '5rem 2rem 3rem',
+          maxWidth: '760px',
+          margin: '0 auto',
         }}>
-          Aubury Essentian
-        </h1>
-        <p style={{
-          fontSize: '1.25rem',
-          color: 'var(--ifm-font-color-secondary)',
-          marginBottom: '2rem',
-          lineHeight: 1.6
+          <h1 style={{
+            fontSize: '2.75rem',
+            fontWeight: 700,
+            marginBottom: '1rem',
+            letterSpacing: '-0.02em',
+            lineHeight: 1.15,
+          }}>
+            Aubury Essentian
+          </h1>
+          <p style={{
+            fontSize: '1.2rem',
+            color: 'var(--ifm-font-color-secondary)',
+            marginBottom: '2rem',
+            lineHeight: 1.65,
+            maxWidth: '560px',
+          }}>
+            Ethereum research and analysis. Deep dives into the protocol, the data, and the weird edge cases that everyone ignores.
+          </p>
+          <div style={{
+            display: 'flex',
+            gap: '0.75rem',
+            flexWrap: 'wrap',
+            marginBottom: '3rem',
+          }}>
+            <Link
+              to="/blog"
+              style={{
+                padding: '0.65rem 1.4rem',
+                background: 'var(--ifm-color-primary)',
+                color: 'white',
+                borderRadius: '6px',
+                textDecoration: 'none',
+                fontWeight: 600,
+                fontSize: '0.95rem',
+              }}>
+              Read the blog
+            </Link>
+            <Link
+              to="/about"
+              style={{
+                padding: '0.65rem 1.4rem',
+                border: '1px solid var(--ifm-color-emphasis-300)',
+                borderRadius: '6px',
+                textDecoration: 'none',
+                fontWeight: 500,
+                fontSize: '0.95rem',
+              }}>
+              About
+            </Link>
+            <Link
+              to="https://github.com/AuburyEssentian"
+              style={{
+                padding: '0.65rem 1.4rem',
+                border: '1px solid var(--ifm-color-emphasis-300)',
+                borderRadius: '6px',
+                textDecoration: 'none',
+                fontWeight: 500,
+                fontSize: '0.95rem',
+              }}>
+              GitHub
+            </Link>
+          </div>
+
+          {/* Stats row */}
+          <div style={{
+            display: 'flex',
+            gap: '2.5rem',
+            borderTop: '1px solid var(--ifm-color-emphasis-200)',
+            paddingTop: '1.5rem',
+          }}>
+            {STATS.map(s => (
+              <div key={s.label}>
+                <div style={{ fontSize: '1.6rem', fontWeight: 700, lineHeight: 1 }}>{s.value}</div>
+                <div style={{ fontSize: '0.8rem', color: 'var(--ifm-font-color-secondary)', marginTop: '0.25rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Recent posts */}
+        <section style={{
+          maxWidth: '760px',
+          margin: '0 auto',
+          padding: '0 2rem 5rem',
         }}>
-          Ethereum research and analysis. Deep dives into the protocol, the data, and the weird edge cases.
-        </p>
-        <div style={{
-          display: 'flex',
-          gap: '1rem',
-          justifyContent: 'center',
-          flexWrap: 'wrap'
-        }}>
-          <Link
-            to="/"
-            style={{
-              padding: '0.75rem 1.5rem',
-              background: 'var(--ifm-color-primary)',
-              color: 'white',
-              borderRadius: '8px',
-              textDecoration: 'none',
-              fontWeight: 500
-            }}>
-            Read the blog
-          </Link>
-          <Link
-            to="https://github.com/AuburyEssentian"
-            style={{
-              padding: '0.75rem 1.5rem',
-              border: '1px solid var(--ifm-color-emphasis-300)',
-              borderRadius: '8px',
-              textDecoration: 'none',
-              fontWeight: 500
-            }}>
-            GitHub
-          </Link>
-        </div>
+          <h2 style={{
+            fontSize: '1rem',
+            fontWeight: 600,
+            textTransform: 'uppercase',
+            letterSpacing: '0.08em',
+            color: 'var(--ifm-font-color-secondary)',
+            marginBottom: '1.5rem',
+          }}>
+            Recent posts
+          </h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+            {RECENT_POSTS.map((post, i) => (
+              <Link
+                key={post.slug}
+                to={post.slug}
+                style={{
+                  display: 'block',
+                  padding: '1.25rem 0',
+                  borderTop: i === 0 ? '1px solid var(--ifm-color-emphasis-200)' : undefined,
+                  borderBottom: '1px solid var(--ifm-color-emphasis-200)',
+                  textDecoration: 'none',
+                  color: 'inherit',
+                }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '1rem', marginBottom: '0.35rem' }}>
+                  <span style={{ fontWeight: 600, fontSize: '1rem' }}>{post.title}</span>
+                  <span style={{ fontSize: '0.8rem', color: 'var(--ifm-font-color-secondary)', flexShrink: 0 }}>{post.date}</span>
+                </div>
+                <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--ifm-font-color-secondary)', lineHeight: 1.5 }}>
+                  {post.summary}
+                </p>
+              </Link>
+            ))}
+          </div>
+          <div style={{ marginTop: '1.5rem' }}>
+            <Link to="/blog" style={{ fontSize: '0.9rem', fontWeight: 500 }}>
+              All posts →
+            </Link>
+          </div>
+        </section>
       </main>
     </Layout>
   );
