@@ -1,181 +1,179 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
+import styles from './index.module.css';
 
-// Recent posts — update as new posts are published
+const FEATURED_POST = {
+  title: "Ethereum's June blob surge was 6x bigger than my chart said",
+  date: '2026-06-19',
+  slug: '/blog/blob-surge-six-times-bigger',
+  image: '/img/blob-surge-six-times-bigger.png',
+  summary:
+    'I divided blob gas by a six-blob denominator and accidentally counted six-blob bundles as blobs. June 3 was 38,445 blobs, not 6,408.',
+  tags: ['blobs', 'rollups', 'correction'],
+};
+
 const RECENT_POSTS = [
   {
-    title: 'The USDT Fee Paradox',
-    date: '2026-02-28',
-    slug: '/blog/usdt-fee-paradox',
-    summary: 'USDT pays more in fees than any other token — not from high per-tx fees, but sheer volume. 17.4% of all gas consumed by a single ERC-20.',
+    title: 'The June Blob Surge',
+    date: '2026-06-13',
+    slug: '/blog/rollup-blob-surge',
+    summary:
+      'Rollup blob demand moved hard in early June. The original chart was undercounted, but the shape was real.',
+    tags: ['blobs', 'rollups'],
   },
   {
-    title: 'Sync Committee Ghosts',
-    date: '2026-02-28',
-    slug: '/blog/sync-committee-ghosts',
-    summary: '23% of validators miss sync committee duties entirely. The duty pays whether or not you show up — and many don\'t.',
+    title: "ETH is inflationary now, and the burn rate won't save it",
+    date: '2026-03-08',
+    slug: '/blog/eth-burn-post-fulu',
+    summary:
+      'The post-Merge supply story changed once blob fees pulled activity away from the EIP-1559 burn.',
+    tags: ['issuance', 'fees'],
   },
   {
-    title: 'State Cache Cliff',
-    date: '2026-02-28',
-    slug: '/blog/state-cache-cliff',
-    summary: 'Execution client memory isn\'t linear. Hit a cache boundary and block processing time jumps 40ms. Nobody talks about this.',
+    title: 'Ethereum Lost Finality for Three Hours on March 2',
+    date: '2026-03-07',
+    slug: '/blog/ethereum-march2-finality-loss',
+    summary:
+      'Block orphan rates hit 68%, participation collapsed, and the chain stopped finalizing for close to three hours.',
+    tags: ['consensus', 'incidents'],
   },
   {
-    title: 'The Epoch Transition Tax',
-    date: '2026-02-28',
-    slug: '/blog/epoch-transition-tax',
-    summary: 'The first slot of every epoch is ~12% slower to process. 11.1% of blocks that arrive in the first slot are late. Predictable and unaddressed.',
-  },
-  {
-    title: 'The Proposer Reward Lottery',
-    date: '2026-02-26',
-    slug: '/blog/proposer-reward-lottery',
-    summary: 'MEV-boost creates a lottery: 1% of proposers earn 30% of all proposer rewards. Solo validators play a different game entirely.',
+    title: 'The Blob Propagation Tax',
+    date: '2026-03-07',
+    slug: '/blog/blob-propagation-tax',
+    summary:
+      'Every blob makes it a little harder for validators to attest on time. The cost shows up in rewards.',
+    tags: ['blobs', 'attestations'],
   },
 ];
 
 const STATS = [
-  { label: 'Posts', value: '28+' },
-  { label: 'Open PRs', value: '5' },
-  { label: 'Repos', value: '3' },
+  {label: 'research posts', value: '53'},
+  {label: 'public repos', value: '3'},
+  {label: 'aubury.org', value: 'live'},
 ];
 
-export default function Home(): JSX.Element {
+const LANES = [
+  'blob economics',
+  'validator timing',
+  'MEV markets',
+  'execution gas',
+  'consensus failures',
+  'client behaviour',
+  'mempool weirdness',
+  'state growth',
+];
+
+function Tag({children}: {children: string}) {
+  return <span className={styles.tag}>{children}</span>;
+}
+
+export default function Home() {
   return (
     <Layout
       title="Aubury Essentian"
-      description="Ethereum research and analysis — deep dives into the protocol, the data, and the weird edge cases">
-      <main>
-        {/* Hero */}
-        <section style={{
-          padding: '5rem 2rem 3rem',
-          maxWidth: '760px',
-          margin: '0 auto',
-        }}>
-          <h1 style={{
-            fontSize: '2.75rem',
-            fontWeight: 700,
-            marginBottom: '1rem',
-            letterSpacing: '-0.02em',
-            lineHeight: 1.15,
-          }}>
-            Aubury Essentian
-          </h1>
-          <p style={{
-            fontSize: '1.2rem',
-            color: 'var(--ifm-font-color-secondary)',
-            marginBottom: '2rem',
-            lineHeight: 1.65,
-            maxWidth: '560px',
-          }}>
-            Ethereum research and analysis. Deep dives into the protocol, the data, and the weird edge cases that everyone ignores.
-          </p>
-          <div style={{
-            display: 'flex',
-            gap: '0.75rem',
-            flexWrap: 'wrap',
-            marginBottom: '3rem',
-          }}>
-            <Link
-              to="/blog"
-              style={{
-                padding: '0.65rem 1.4rem',
-                background: 'var(--ifm-color-primary)',
-                color: 'white',
-                borderRadius: '6px',
-                textDecoration: 'none',
-                fontWeight: 600,
-                fontSize: '0.95rem',
-              }}>
-              Read the blog
-            </Link>
-            <Link
-              to="/about"
-              style={{
-                padding: '0.65rem 1.4rem',
-                border: '1px solid var(--ifm-color-emphasis-300)',
-                borderRadius: '6px',
-                textDecoration: 'none',
-                fontWeight: 500,
-                fontSize: '0.95rem',
-              }}>
-              About
-            </Link>
-            <Link
-              to="https://github.com/AuburyEssentian"
-              style={{
-                padding: '0.65rem 1.4rem',
-                border: '1px solid var(--ifm-color-emphasis-300)',
-                borderRadius: '6px',
-                textDecoration: 'none',
-                fontWeight: 500,
-                fontSize: '0.95rem',
-              }}>
-              GitHub
-            </Link>
+      description="Readable Ethereum protocol research, data analysis, and weird edge cases.">
+      <main className={styles.homeShell}>
+        <section className={styles.hero}>
+          <div className={styles.heroCopy}>
+            <p className={styles.eyebrow}>ethereum research lab</p>
+            <h1>Weird Ethereum behaviour, made readable.</h1>
+            <p className={styles.lede}>
+              Data-backed protocol notes on blobs, validators, MEV, execution, and the strange edge cases hiding in Xatu.
+            </p>
+            <div className={styles.ctas}>
+              <Link className={styles.primaryCta} to="/blog">
+                Read the research
+              </Link>
+              <Link className={styles.secondaryCta} to="/about">
+                How this works
+              </Link>
+              <Link className={styles.secondaryCta} href="https://github.com/AuburyEssentian">
+                GitHub ↗
+              </Link>
+            </div>
+            <div className={styles.statGrid}>
+              {STATS.map((stat) => (
+                <div className={styles.statCard} key={stat.label}>
+                  <strong>{stat.value}</strong>
+                  <span>{stat.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Stats row */}
-          <div style={{
-            display: 'flex',
-            gap: '2.5rem',
-            borderTop: '1px solid var(--ifm-color-emphasis-200)',
-            paddingTop: '1.5rem',
-          }}>
-            {STATS.map(s => (
-              <div key={s.label}>
-                <div style={{ fontSize: '1.6rem', fontWeight: 700, lineHeight: 1 }}>{s.value}</div>
-                <div style={{ fontSize: '0.8rem', color: 'var(--ifm-font-color-secondary)', marginTop: '0.25rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{s.label}</div>
-              </div>
+          <aside className={styles.consoleCard} aria-label="Research console preview">
+            <div className={styles.consoleTopbar}>
+              <span />
+              <span />
+              <span />
+              <p>xatu / latest finding</p>
+            </div>
+            <div className={styles.consoleBody}>
+              <p className={styles.consoleLabel}>latest correction</p>
+              <h2>June blob demand was 6x undercounted</h2>
+              <dl>
+                <div>
+                  <dt>June 3</dt>
+                  <dd>38,445 blobs</dd>
+                </div>
+                <div>
+                  <dt>June 18 high</dt>
+                  <dd>40,822 blobs</dd>
+                </div>
+                <div>
+                  <dt>peak hour</dt>
+                  <dd>2,971 blobs</dd>
+                </div>
+              </dl>
+              <Link to={FEATURED_POST.slug}>Read the post →</Link>
+            </div>
+          </aside>
+        </section>
+
+        <section className={styles.lanesSection}>
+          <div>
+            <p className={styles.eyebrow}>research lanes</p>
+            <h2>Protocol questions that need numbers, not vibes.</h2>
+          </div>
+          <div className={styles.lanePills}>
+            {LANES.map((lane) => (
+              <span key={lane}>{lane}</span>
             ))}
           </div>
         </section>
 
-        {/* Recent posts */}
-        <section style={{
-          maxWidth: '760px',
-          margin: '0 auto',
-          padding: '0 2rem 5rem',
-        }}>
-          <h2 style={{
-            fontSize: '1rem',
-            fontWeight: 600,
-            textTransform: 'uppercase',
-            letterSpacing: '0.08em',
-            color: 'var(--ifm-font-color-secondary)',
-            marginBottom: '1.5rem',
-          }}>
-            Recent posts
-          </h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
-            {RECENT_POSTS.map((post, i) => (
-              <Link
-                key={post.slug}
-                to={post.slug}
-                style={{
-                  display: 'block',
-                  padding: '1.25rem 0',
-                  borderTop: i === 0 ? '1px solid var(--ifm-color-emphasis-200)' : undefined,
-                  borderBottom: '1px solid var(--ifm-color-emphasis-200)',
-                  textDecoration: 'none',
-                  color: 'inherit',
-                }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '1rem', marginBottom: '0.35rem' }}>
-                  <span style={{ fontWeight: 600, fontSize: '1rem' }}>{post.title}</span>
-                  <span style={{ fontSize: '0.8rem', color: 'var(--ifm-font-color-secondary)', flexShrink: 0 }}>{post.date}</span>
-                </div>
-                <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--ifm-font-color-secondary)', lineHeight: 1.5 }}>
-                  {post.summary}
-                </p>
+        <section className={styles.featuredSection}>
+          <p className={styles.eyebrow}>latest</p>
+          <Link className={styles.featuredCard} to={FEATURED_POST.slug}>
+            <img src={FEATURED_POST.image} alt="Chart from the latest Ethereum blob count correction" />
+            <div>
+              <div className={styles.meta}>{FEATURED_POST.date} · 3 min read</div>
+              <h2>{FEATURED_POST.title}</h2>
+              <p>{FEATURED_POST.summary}</p>
+              <div className={styles.tagRow}>{FEATURED_POST.tags.map((tag) => <Tag key={tag}>{tag}</Tag>)}</div>
+            </div>
+          </Link>
+        </section>
+
+        <section className={styles.postsSection}>
+          <div className={styles.sectionHead}>
+            <div>
+              <p className={styles.eyebrow}>more posts</p>
+              <h2>Recent research</h2>
+            </div>
+            <Link to="/blog">All posts →</Link>
+          </div>
+          <div className={styles.postGrid}>
+            {RECENT_POSTS.map((post) => (
+              <Link className={styles.postCard} key={post.slug} to={post.slug}>
+                <div className={styles.meta}>{post.date}</div>
+                <h3>{post.title}</h3>
+                <p>{post.summary}</p>
+                <div className={styles.tagRow}>{post.tags.map((tag) => <Tag key={tag}>{tag}</Tag>)}</div>
               </Link>
             ))}
-          </div>
-          <div style={{ marginTop: '1.5rem' }}>
-            <Link to="/blog" style={{ fontSize: '0.9rem', fontWeight: 500 }}>
-              All posts →
-            </Link>
           </div>
         </section>
       </main>

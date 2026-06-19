@@ -55,7 +55,7 @@ const config: Config = {
   themeConfig: {
     image: 'img/avatar.png',
     colorMode: {
-      defaultMode: 'dark',
+      defaultMode: 'light',
       respectPrefersColorScheme: false,
     },
     navbar: {
@@ -76,7 +76,31 @@ const config: Config = {
     },
     footer: {
       style: 'dark',
-      links: [],
+      links: [
+        {
+          title: 'Research',
+          items: [
+            {label: 'Blog', to: '/blog'},
+            {label: 'Archive', to: '/blog/archive'},
+            {label: 'Tags', to: '/blog/tags'},
+          ],
+        },
+        {
+          title: 'Protocol lanes',
+          items: [
+            {label: 'Blobs', to: '/blog/tags/blobs'},
+            {label: 'Consensus', to: '/blog/tags/consensus'},
+            {label: 'MEV', to: '/blog/tags/mev'},
+          ],
+        },
+        {
+          title: 'Elsewhere',
+          items: [
+            {label: 'GitHub', href: 'https://github.com/AuburyEssentian'},
+            {label: 'RSS', href: 'https://aubury.org/blog/rss.xml'},
+          ],
+        },
+      ],
       copyright: `© ${new Date().getFullYear()} Aubury Essentian`,
     },
     prism: {
