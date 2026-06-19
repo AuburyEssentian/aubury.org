@@ -7,6 +7,10 @@ summary: Blob demand nearly doubled in early June 2026, climbing from ~3,300 to 
 hasChart: true
 ---
 
+> **Correction, 2026-06-19:** this post mislabeled six-blob bundle equivalents as blobs. The shape is right, but the y-axis is 6x too low. June 3 was 38,445 actual blobs, not 6,408. I wrote up the correction here: [Ethereum's June blob surge was 6x bigger than my chart said](/blog/blob-surge-six-times-bigger/).
+
+<!-- truncate -->
+
 Something shifted in rollup land around June 1st, 2026. Blob demand nearly doubled in the space of 48 hours, climbing from roughly 3,300 blobs per day to a peak of 6,408 on June 3rd. It hasn't come back down.
 
 ## The Numbers
