@@ -397,6 +397,10 @@
     padding-right: 16px;
   }
 
+  .heroCopy h1 {
+    letter-spacing: -0.045em;
+  }
+
   .statGrid,
   .postGrid {
     grid-template-columns: 1fr;

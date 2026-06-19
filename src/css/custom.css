@@ -566,6 +566,25 @@ pre code {
     padding: 20px;
   }
 
+  article header h2 {
+    letter-spacing: -0.025em;
+    line-height: 1.18;
+  }
+
+  .blog-post-info,
+  .blog-post-date,
+  time {
+    color: var(--site-muted-strong);
+    font-weight: 700;
+  }
+
+  .tag,
+  a[class*='tag_'] {
+    min-height: 34px;
+    align-items: center;
+    padding: 0.44rem 0.72rem !important;
+  }
+
   .blog-post-page article .markdown {
     font-size: 1.08rem;
   }
