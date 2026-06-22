@@ -12,6 +12,8 @@ The limit went from 30 million to 60 million gas—a 100% increase in block capa
 
 <!-- truncate -->
 
+> **Correction, 2026-06-22:** the historical block-header series in this post is still right, but the final section over-read `fct_execution_gas_limit_signalling_daily` as live validator preference. That table reflects relay-registration cache data, and some old 30M/36M entries are stale signatures, not current block-production signals. I wrote up the correction here: [The 36M gas limit signals are fossils](/blog/gas-limit-registration-fossils/).
+
 ## What actually happened
 
 The gas limit is set by validators. Each block proposer signals their preferred limit in the block header. The actual limit drifts toward the median preference, moving at most 1/1024 of the current value per block.
