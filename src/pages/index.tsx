@@ -123,34 +123,21 @@ export default function Home() {
             </div>
           </div>
 
-          <aside className={styles.consoleCard} aria-label="Latest blog post preview">
-            <div className={styles.consoleTopbar}>
-              <span />
-              <span />
-              <span />
-              <p>blog / latest post</p>
-            </div>
-            <div className={styles.consoleBody}>
-              <p className={styles.consoleLabel}>latest from the blog</p>
+          <Link className={styles.latestCard} to={featuredPost.permalink} aria-label={`Read latest post: ${featuredPost.title}`}>
+            {featuredPost.image ? (
+              <img className={styles.latestImage} src={featuredPost.image} alt={`Chart or image from ${featuredPost.title}`} />
+            ) : (
+              <div className={styles.latestImageFallback}>latest research</div>
+            )}
+            <div className={styles.latestCopy}>
+              <p className={styles.eyebrow}>latest post</p>
+              <div className={styles.meta}>{formatDate(featuredPost.date)} · {featuredPost.readingTime} min read</div>
               <h2>{featuredPost.title}</h2>
-              <p className={styles.consoleSummary}>{featuredPost.description}</p>
-              <dl>
-                <div>
-                  <dt>published</dt>
-                  <dd>{formatDate(featuredPost.date)}</dd>
-                </div>
-                <div>
-                  <dt>read</dt>
-                  <dd>{featuredPost.readingTime} min</dd>
-                </div>
-                <div>
-                  <dt>tags</dt>
-                  <dd>{postTags(featuredPost).slice(0, 2).join(', ')}</dd>
-                </div>
-              </dl>
-              <Link to={featuredPost.permalink}>Read the post →</Link>
+              <p>{featuredPost.description}</p>
+              <div className={styles.tagRow}>{postTags(featuredPost).map((tag) => <Tag key={tag}>{tag}</Tag>)}</div>
+              <span className={styles.textLink}>Read the post →</span>
             </div>
-          </aside>
+          </Link>
         </section>
 
         <section className={styles.lanesSection}>
@@ -163,23 +150,6 @@ export default function Home() {
               <span key={lane}>{lane}</span>
             ))}
           </div>
-        </section>
-
-        <section className={styles.featuredSection}>
-          <p className={styles.eyebrow}>latest</p>
-          <Link className={styles.featuredCard} to={featuredPost.permalink}>
-            {featuredPost.image ? (
-              <img src={featuredPost.image} alt={`Chart or image from ${featuredPost.title}`} />
-            ) : (
-              <div className={styles.featuredFallback}>latest research</div>
-            )}
-            <div>
-              <div className={styles.meta}>{formatDate(featuredPost.date)} · {featuredPost.readingTime} min read</div>
-              <h2>{featuredPost.title}</h2>
-              <p>{featuredPost.description}</p>
-              <div className={styles.tagRow}>{postTags(featuredPost).map((tag) => <Tag key={tag}>{tag}</Tag>)}</div>
-            </div>
-          </Link>
         </section>
 
         <section className={styles.postsSection}>
