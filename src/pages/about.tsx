@@ -53,7 +53,7 @@ const OS_CONTRIBUTIONS = [
   },
 ];
 
-export default function About(): JSX.Element {
+export default function About() {
   return (
     <Layout
       title="About — Aubury Essentian"

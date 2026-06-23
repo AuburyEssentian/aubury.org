@@ -1,60 +1,32 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
+import {usePluginData} from '@docusaurus/useGlobalData';
 import styles from './index.module.css';
 
-const FEATURED_POST = {
-  title: "Ethereum's June blob surge was 6x bigger than my chart said",
-  date: '2026-06-19',
-  slug: '/blog/blob-surge-six-times-bigger',
-  image: '/img/blob-surge-six-times-bigger.png',
-  summary:
-    'I divided blob gas by a six-blob denominator and accidentally counted six-blob bundles as blobs. June 3 was 38,445 blobs, not 6,408.',
-  tags: ['blobs', 'rollups', 'correction'],
+type HomepageBlogPost = {
+  title: string;
+  date: string;
+  permalink: string;
+  description: string;
+  tags: string[];
+  image?: string;
+  readingTime: number;
 };
 
-const RECENT_POSTS = [
-  {
-    title: 'The June Blob Surge',
-    date: '2026-06-13',
-    slug: '/blog/rollup-blob-surge',
-    summary:
-      'Rollup blob demand moved hard in early June. The original chart was undercounted, but the shape was real.',
-    tags: ['blobs', 'rollups'],
-  },
-  {
-    title: "ETH is inflationary now, and the burn rate won't save it",
-    date: '2026-03-08',
-    slug: '/blog/eth-burn-post-fulu',
-    summary:
-      'The post-Merge supply story changed once blob fees pulled activity away from the EIP-1559 burn.',
-    tags: ['issuance', 'fees'],
-  },
-  {
-    title: 'Ethereum Lost Finality for Three Hours on March 2',
-    date: '2026-03-07',
-    slug: '/blog/ethereum-march2-finality-loss',
-    summary:
-      'Block orphan rates hit 68%, participation collapsed, and the chain stopped finalizing for close to three hours.',
-    tags: ['consensus', 'incidents'],
-  },
-  {
-    title: 'The Blob Propagation Tax',
-    date: '2026-03-07',
-    slug: '/blog/blob-propagation-tax',
-    summary:
-      'Every blob makes it a little harder for validators to attest on time. The cost shows up in rewards.',
-    tags: ['blobs', 'attestations'],
-  },
-];
+type HomepageBlogData = {
+  posts: HomepageBlogPost[];
+  postCount: number;
+  topTags: string[];
+};
 
-const STATS = [
-  {label: 'research posts', value: '53'},
-  {label: 'public repos', value: '3'},
-  {label: 'aubury.org', value: 'live'},
-];
+const EMPTY_BLOG_DATA: HomepageBlogData = {
+  posts: [],
+  postCount: 0,
+  topTags: [],
+};
 
-const LANES = [
+const FALLBACK_TAGS = [
   'blob economics',
   'validator timing',
   'MEV markets',
@@ -65,11 +37,59 @@ const LANES = [
   'state growth',
 ];
 
+const FALLBACK_POST: HomepageBlogPost = {
+  title: 'Latest research',
+  date: '',
+  permalink: '/blog',
+  description: 'Fresh Ethereum protocol notes appear here as soon as they land in the blog.',
+  tags: ['ethereum'],
+  readingTime: 1,
+};
+
 function Tag({children}: {children: string}) {
   return <span className={styles.tag}>{children}</span>;
 }
 
+function formatDate(date: string): string {
+  if (!date) {
+    return 'latest';
+  }
+
+  return new Intl.DateTimeFormat('en-AU', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(new Date(`${date}T00:00:00Z`));
+}
+
+function formatShortDate(date: string): string {
+  if (!date) {
+    return 'live';
+  }
+
+  return new Intl.DateTimeFormat('en-AU', {
+    day: 'numeric',
+    month: 'short',
+    timeZone: 'UTC',
+  }).format(new Date(`${date}T00:00:00Z`));
+}
+
+function postTags(post: HomepageBlogPost): string[] {
+  return post.tags.length ? post.tags.slice(0, 4) : ['ethereum'];
+}
+
 export default function Home() {
+  const blogData = (usePluginData('homepage-blog-data') as HomepageBlogData | undefined) ?? EMPTY_BLOG_DATA;
+  const featuredPost = blogData.posts[0] ?? FALLBACK_POST;
+  const recentPosts = blogData.posts.slice(1, 5);
+  const lanes = blogData.topTags.length ? blogData.topTags : FALLBACK_TAGS;
+  const stats = [
+    {label: 'research posts', value: String(blogData.postCount)},
+    {label: 'latest post', value: formatShortDate(featuredPost.date)},
+    {label: 'live topics', value: String(lanes.length)},
+  ];
+
   return (
     <Layout
       title="Aubury Essentian"
@@ -94,7 +114,7 @@ export default function Home() {
               </Link>
             </div>
             <div className={styles.statGrid}>
-              {STATS.map((stat) => (
+              {stats.map((stat) => (
                 <div className={styles.statCard} key={stat.label}>
                   <strong>{stat.value}</strong>
                   <span>{stat.label}</span>
@@ -103,42 +123,43 @@ export default function Home() {
             </div>
           </div>
 
-          <aside className={styles.consoleCard} aria-label="Research console preview">
+          <aside className={styles.consoleCard} aria-label="Latest blog post preview">
             <div className={styles.consoleTopbar}>
               <span />
               <span />
               <span />
-              <p>xatu / latest finding</p>
+              <p>blog / latest post</p>
             </div>
             <div className={styles.consoleBody}>
-              <p className={styles.consoleLabel}>latest correction</p>
-              <h2>June blob demand was 6x undercounted</h2>
+              <p className={styles.consoleLabel}>latest from the blog</p>
+              <h2>{featuredPost.title}</h2>
+              <p className={styles.consoleSummary}>{featuredPost.description}</p>
               <dl>
                 <div>
-                  <dt>June 3</dt>
-                  <dd>38,445 blobs</dd>
+                  <dt>published</dt>
+                  <dd>{formatDate(featuredPost.date)}</dd>
                 </div>
                 <div>
-                  <dt>June 18 high</dt>
-                  <dd>40,822 blobs</dd>
+                  <dt>read</dt>
+                  <dd>{featuredPost.readingTime} min</dd>
                 </div>
                 <div>
-                  <dt>peak hour</dt>
-                  <dd>2,971 blobs</dd>
+                  <dt>tags</dt>
+                  <dd>{postTags(featuredPost).slice(0, 2).join(', ')}</dd>
                 </div>
               </dl>
-              <Link to={FEATURED_POST.slug}>Read the post →</Link>
+              <Link to={featuredPost.permalink}>Read the post →</Link>
             </div>
           </aside>
         </section>
 
         <section className={styles.lanesSection}>
           <div>
-            <p className={styles.eyebrow}>research lanes</p>
-            <h2>Protocol questions that need numbers, not vibes.</h2>
+            <p className={styles.eyebrow}>live tags</p>
+            <h2>Whatever the blog has been circling lately.</h2>
           </div>
           <div className={styles.lanePills}>
-            {LANES.map((lane) => (
+            {lanes.map((lane) => (
               <span key={lane}>{lane}</span>
             ))}
           </div>
@@ -146,13 +167,17 @@ export default function Home() {
 
         <section className={styles.featuredSection}>
           <p className={styles.eyebrow}>latest</p>
-          <Link className={styles.featuredCard} to={FEATURED_POST.slug}>
-            <img src={FEATURED_POST.image} alt="Chart from the latest Ethereum blob count correction" />
+          <Link className={styles.featuredCard} to={featuredPost.permalink}>
+            {featuredPost.image ? (
+              <img src={featuredPost.image} alt={`Chart or image from ${featuredPost.title}`} />
+            ) : (
+              <div className={styles.featuredFallback}>latest research</div>
+            )}
             <div>
-              <div className={styles.meta}>{FEATURED_POST.date} · 3 min read</div>
-              <h2>{FEATURED_POST.title}</h2>
-              <p>{FEATURED_POST.summary}</p>
-              <div className={styles.tagRow}>{FEATURED_POST.tags.map((tag) => <Tag key={tag}>{tag}</Tag>)}</div>
+              <div className={styles.meta}>{formatDate(featuredPost.date)} · {featuredPost.readingTime} min read</div>
+              <h2>{featuredPost.title}</h2>
+              <p>{featuredPost.description}</p>
+              <div className={styles.tagRow}>{postTags(featuredPost).map((tag) => <Tag key={tag}>{tag}</Tag>)}</div>
             </div>
           </Link>
         </section>
@@ -166,12 +191,12 @@ export default function Home() {
             <Link to="/blog">All posts →</Link>
           </div>
           <div className={styles.postGrid}>
-            {RECENT_POSTS.map((post) => (
-              <Link className={styles.postCard} key={post.slug} to={post.slug}>
-                <div className={styles.meta}>{post.date}</div>
+            {recentPosts.map((post) => (
+              <Link className={styles.postCard} key={post.permalink} to={post.permalink}>
+                <div className={styles.meta}>{formatDate(post.date)} · {post.readingTime} min read</div>
                 <h3>{post.title}</h3>
-                <p>{post.summary}</p>
-                <div className={styles.tagRow}>{post.tags.map((tag) => <Tag key={tag}>{tag}</Tag>)}</div>
+                <p>{post.description}</p>
+                <div className={styles.tagRow}>{postTags(post).map((tag) => <Tag key={tag}>{tag}</Tag>)}</div>
               </Link>
             ))}
           </div>
