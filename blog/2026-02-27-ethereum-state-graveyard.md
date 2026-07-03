@@ -1,12 +1,14 @@
 ---
 title: "The State Graveyard: 88% of Ethereum's Storage Hasn't Been Touched in a Year"
-description: "Every Ethereum full node carries 296 GB of state. 88% of it hasn't been accessed in over a year. And the single largest consumer isn't USDT — it's XEN Crypto."
+description: "Every Ethereum full node carries 430.9 GB of exposed state-size components as of Feb 26, 2026. 88% of storage slots hadn't been accessed in over a year. And the single largest consumer isn't USDT — it's XEN Crypto."
 authors: [aubury]
 tags: [ethereum, state, storage, xen, state-expiry]
 date: 2026-02-27
 ---
 
-Every full Ethereum node is currently lugging around **296 GB of state**. Every account, every contract, every storage slot. Sync a fresh node and you're downloading all of it. Run a node continuously and you're holding all of it in your database, forever.
+> **Correction, 2026-07-04:** the dormant-storage-slot analysis in this post still stands, but the headline byte count was wrong for the sentence I wrote. I used `mainnet.fct_execution_state_size_daily.total_bytes` as "total state," then described storage-trie bytes as part of that total. The same Feb 26 row's exposed byte components sum to **430.9 GB**, not **295.9 GB**. I wrote up the correction here: [The state-size total I used was not the total](/blog/state-size-total-correction/).
+
+Every full Ethereum node is currently lugging around **430.9 GB of exposed state-size components**. Every account, every contract, every storage slot, and the trie nodes wrapped around them. Sync a fresh node and you're downloading all of it. Run a node continuously and you're holding all of it in your database, forever.
 
 The uncomfortable truth: the vast majority of that state is dead. It hasn't moved in over a year. The addresses are abandoned, the contracts are deprecated, the protocols are gone. The data just... sits there. In every node on the network.
 
@@ -30,7 +32,7 @@ FROM mainnet.fct_address_storage_slot_total
 
 Global total: **2.4 billion storage slots**. Of those, **2.12 billion** — 88.3% — haven't been touched in a year.
 
-The state size data confirms: 296 GB total state as of late February 2026, growing at roughly 200 MB per day. Storage trie nodes alone account for 221 GB of that — the overhead of the Patricia Merkle Trie that makes every slot globally verifiable.
+The corrected state-size check is **430.9 GB of exposed components** as of Feb 26, 2026, growing at roughly a few hundred MB per day. Storage trie nodes alone account for **220.8 GB** of that component sum — the overhead of the Patricia Merkle Trie that makes every slot globally verifiable.
 
 ## XEN Crypto is the largest state consumer on Ethereum
 
@@ -103,10 +105,10 @@ The argument usually sounds theoretical. These numbers make it concrete.
 
 If a state expiry mechanism existed that could prune slots not accessed in 12 months, the 2.4 billion slot universe would shrink to roughly **280 million active slots** (11.7% of current). The storage trie — which accounts for the majority of state size due to Merkle overhead — would compress dramatically alongside it.
 
-This is also the data behind why state sync time for new nodes is measured in hours: the node has to validate and store all 296 GB regardless of whether 88% of it will ever be needed again.
+This is also the data behind why state sync time for new nodes is measured in hours: the node has to validate and store the state components regardless of whether 88% of the old storage slots will ever be needed again.
 
 For now, every node holds it all. EtherDelta, Forsage, and XEN's armies of minting bots included.
 
 ---
 
-*Data: ethpandaops xatu-cbt `fct_execution_state_size_daily`, `fct_address_storage_slot_top_100_by_contract`, `fct_address_storage_slot_expired_top_100_by_contract`, and `fct_address_storage_slot_total`. Expired = not accessed in 365 days. Snapshot date: December 2025. State size: February 2026.*
+*Data: ethpandaops xatu-cbt `fct_execution_state_size_daily`, `fct_address_storage_slot_top_100_by_contract`, `fct_address_storage_slot_expired_top_100_by_contract`, and `fct_address_storage_slot_total`. Expired = not accessed in 365 days. Snapshot date: December 2025. Corrected component-sum state size: February 2026.*
