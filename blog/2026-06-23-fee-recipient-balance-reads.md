@@ -7,6 +7,8 @@ tags: [ethereum, execution, xatu, panda, data]
 date: 2026-06-23
 ---
 
+> **Correction, 2026-07-14:** I called these rows "logical execution instrumentation for ETH balance reads." The count was right, but the noun was wrong. Xatu gets this table from Cryo's projection of Geth's `prestateTracer`, so each row is a transaction-account prestate record, not a `BALANCE` opcode or repeated-read counter. The fee-recipient one-row-per-transaction result survives. [I wrote up the correction here](/blog/balance-reads-prestate-accounts/).
+
 USDT was not the hottest address in the balance-read table.
 
 I expected the usual suspects: USDT, USDC, WETH, routers, precompiles, some unlabeled contract that every block touches. They are all there. But the biggest line in the one-day sample was a builder fee recipient, because the execution path records a balance read against the block author once per transaction.
