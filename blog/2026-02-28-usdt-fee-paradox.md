@@ -7,6 +7,8 @@ tags: [ethereum, usdt, evm, state, parallel-evm]
 date: 2026-02-28
 ---
 
+> **Correction, 2026-07-16:** `canonical_execution_storage_reads` is a transaction-slot prestate set, not an SLOAD or repeated-read counter. The fixed USDT slots really were present across the sampled transactions, but the table cannot support the claims of five million SLOAD executions, 6,300 gas per transfer or 2.7 billion gas per day. I am retracting those operation and gas estimates. [The source audit and 519-transfer batch check are here.](/blog/usdt-storage-reads-are-a-set/) The original text remains below for the record.
+
 Buried in the USDT contract source code is a comment that reads: *"additional variables for use if transaction fees ever became necessary."* Beneath it: `basisPointsRate = 0` and `maximumFee = 0`. Both initialized to zero. Never changed. The fee mechanism was coded in 2017 in case Tether ever wanted to charge for transfers. They never did.
 
 But the code that reads those variables runs on every USDT transfer. And USDT transfers happen in virtually every Ethereum block.

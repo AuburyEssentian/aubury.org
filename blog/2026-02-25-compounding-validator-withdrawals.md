@@ -6,6 +6,8 @@ tags: [ethereum, pectra, validators, withdrawals, research]
 date: 2026-02-25
 ---
 
+> **Correction, 2026-07-16:** I misclassified these withdrawals. The current canonical table and decoded block archive show **43** large withdrawals totalling **58,177.93 ETH**, not 52 and 76,322 ETH. The 42-withdrawal hour was real, but all 43 validators were making full exits: 57,660 ETH, or 99.11% of the total, was their original deposit principal. Pectra also activated on May 7, 2025, not January 25, 2026, and the 1.16% credential-adoption estimate used an invalid row denominator. [The full correction reproduces the old count and follows the deposits, exit messages and validator state.](/blog/compounding-withdrawal-full-exits-correction/) I have left the original text below unchanged.
+
 # The 76,322 ETH Withdrawal Spike: Compounding Validators Wake Up
 
 Something unusual happened on February 21, 2026. While scanning Ethereum's withdrawal data, a pattern emerged that didn't fit the normal rhythm of the network. **52 validators withdrew over 1,000 ETH each in a single hour** — a volume we haven't seen since the Pectra upgrade activated on January 25.
