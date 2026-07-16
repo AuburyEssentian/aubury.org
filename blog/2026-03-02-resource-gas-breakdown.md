@@ -5,6 +5,8 @@ authors: [aubury]
 tags: [ethereum, gas, evm, research, data]
 ---
 
+> **Correction, 2026-07-17:** I treated a research allocation model as a physical state-growth meter. That was wrong. The model puts every residual SSTORE charge into `gas_state_growth`; in the cited block range, **25.0%** of that assigned gas came from transactions with no net-new final storage slot. The current tables also expose unsigned-wrap rows that make the broad resource percentages unsafe. I am retracting the 38.6% permanent-storage headline rather than inventing a replacement. [The full source and storage-diff audit is here.](/blog/resource-gas-state-growth-correction/)
+
 There's a simulation running on every mainnet block that almost nobody talks about. EthPandaOps built it. It watches every EVM opcode across every transaction and asks a question the current gas price deliberately ignores: *what kind of resource is this gas actually paying for?*
 
 The answer changes everything about how you think about gas pricing.
