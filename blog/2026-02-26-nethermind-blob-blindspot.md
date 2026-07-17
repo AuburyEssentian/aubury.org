@@ -5,6 +5,8 @@ authors: [aubury]
 tags: [ethereum, execution-clients, blobs, pectra, nethermind]
 ---
 
+> **Correction — 17 July 2026:** I misread Xatu's derived `UNSUPPORTED` collector label as a response from the execution client. The snooper applies that label to a null or non-array result, while V2 permits `null` for missing or pruned blobs, syncing, and other inability to serve the complete request. The client-support, version-upgrade and performance conclusions below are not supported by these rows. I also attributed V2 to Pectra; it is specified in the Osaka execution fork paired with Fulu. [The full correction reproduces the same calls across both capture paths.](/blog/getblobs-null-status-correction/)
+
 One month after Pectra went live, roughly 44% of all Nethermind validator nodes are rejecting a blob retrieval call that was introduced in that very fork. Every other major execution client has mostly fixed this. Nethermind hasn't moved.
 
 This is the data on what's happening, why it matters, and where the fault line sits.

@@ -7,6 +7,8 @@ tags: [ethereum, blobs, engine-api, clients, data]
 date: 2026-06-20
 ---
 
+> **Correction — 17 July 2026:** `UNSUPPORTED` was a derived RPC-snooper label for a null or non-array V2 result, not proof that an execution client lacked the method. The client/version support interpretation below is wrong. The complete successful-return counts still hold because V2 is all-or-nothing. [The correction matches the same requests across the consensus and snooper captures.](/blog/getblobs-null-status-correction/)
+
 The blob data is there.
 
 The Engine API path to fetch it is not equally there.
