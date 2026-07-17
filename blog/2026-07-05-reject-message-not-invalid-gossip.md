@@ -7,6 +7,8 @@ tags: [ethereum, xatu, libp2p, gossipsub]
 date: 2026-07-05
 ---
 
+> **Clarification, 2026-07-18:** Even the `validation failed` bucket is an observer-time result, not an intrinsic label on the message. A later exact-ID check found three data-column messages that had been delivered near slot time, then appeared as `validation failed` 11–15 minutes later. [The follow-up has the matched delivery, duplicate and sidecar rows.](/blog/validation-failed-late-replays/)
+
 `libp2p_reject_message` sounds accusatory. It looks like the table you would count if you wanted bad gossip, invalid messages, or peers doing something wrong.
 
 That is almost exactly how to overread it. In the seven complete UTC days from Jun 28 through Jul 4, the table had **31,027,943** mainnet rows. Only **247** of them were `reason = 'validation failed'`.
