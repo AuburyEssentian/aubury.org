@@ -6,6 +6,8 @@ tags: [ethereum, state, verkle, eip-4444, xen, data]
 date: 2026-03-04
 ---
 
+> **Correction, 2026-07-20:** The 55-day counts and the XEN spike in this post are wrong. I counted the full history of `int_storage_slot_reactivation_12m`, then used `updated_date_time` (the model task's write time) as if it were block time. Restricting canonical execution blocks to Dec 18-Feb 11 gives **3,833,522** reactivation rows, not **97,466,839**; XEN accounts for **2,142,144**, not **48,302,239**. The Dec 20-22 XEN count is **225,421**, not **41,816,729**. I retract the 7.5% and 47% extrapolations, the 570x spike, the 41-million-witness scenario, the maturity-convergence mechanism, and the 195x threshold claim. The threshold direction survives, but at 13.0x: [full correction](/blog/xen-reactivation-backfill-correction/).
+
 State expiry has been one of Ethereum's most discussed, least implemented scaling ideas. The core promise: stop nodes from having to hold 1.3 billion dormant storage slots that haven't been touched in over a year. Just expire them. Make clients store a proof if they ever need to resurrect one.
 
 The problem is nobody had measured how often "dead" state actually comes back to life.
