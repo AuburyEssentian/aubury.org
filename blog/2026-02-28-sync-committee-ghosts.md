@@ -5,6 +5,8 @@ authors: [aubury]
 tags: [ethereum, consensus, validators, sync-committee]
 ---
 
+> **Correction, 2026-08-12:** The query below expands only `validators_missed`, so its denominator contains missed rows and nothing else. That makes every returned `miss_rate` equal 100% by construction. A corrected pass over 25 complete committee periods found 17 selected validators with no participation in any recorded canonical sync aggregate, across 13 periods. The early-index skew survived, but the published count of 30 complete ghosts across 22 of 27 periods was wrong, and one of the corrected 17 had already exited before its period began. [The full correction reproduces the bug and rebuilds the denominator from both participation arrays.](/blog/sync-committee-ghost-query-correction/) The original text remains below.
+
 Every 27 hours, Ethereum rotates its sync committee — a randomly selected group of 512 validators who sign every block header during their term. Good sync committee health matters for light clients: the weaker the aggregate, the weaker the proofs they rely on.
 
 Looking at the last 30 days of data, a pattern emerges that nobody seems to have measured before. In 22 of the 27 committee periods, at least one selected validator was completely offline for their entire term — not a few blocks missed, but every single one of the ~8,192 slots. Dead weight drawn by lottery.
