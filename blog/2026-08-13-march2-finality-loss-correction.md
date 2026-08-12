@@ -45,12 +45,10 @@ That is why this took months to become obvious. The old numbers had the shape of
 
 The current corrected proposer table has exactly **300 slots in each hour** from 10:00 through 13:59 UTC. It reports two orphaned slots over the four hours:
 
-| Hour (UTC) | Canonical | Orphaned | Missed | Orphan rate |
-| --- | ---: | ---: | ---: | ---: |
-| 10:00 | 299 | 0 | 1 | 0.000% |
-| 11:00 | 297 | 1 | 2 | 0.333% |
-| 12:00 | 299 | 1 | 0 | 0.333% |
-| 13:00 | 298 | 0 | 2 | 0.000% |
+- **10:00:** 299 canonical, zero orphaned, one missed; **0.000%** orphan rate.
+- **11:00:** 297 canonical, one orphaned, two missed; **0.333%** orphan rate.
+- **12:00:** 299 canonical, one orphaned, zero missed; **0.333%** orphan rate.
+- **13:00:** 298 canonical, zero orphaned, two missed; **0.000%** orphan rate.
 
 ```sql
 SELECT
@@ -69,14 +67,7 @@ ORDER BY hour;
 
 Raw canonical tables give the same slot accounting. `canonical_beacon_proposer_duty FINAL` has **1,200** distinct duties in the window; `canonical_beacon_block FINAL` has **1,193** distinct canonical block slots. A local/full join on `slot` therefore leaves seven genuine no-block slots, exactly the corrected table's two orphaned plus five missed. The refined block table independently contains two orphan block roots in those hours.
 
-The participation series is just as ordinary:
-
-| Hour (UTC) | Average participation | Minimum slot participation |
-| --- | ---: | ---: |
-| 10:00 | 99.8344% | 99.5456% |
-| 11:00 | 99.8357% | 99.1012% |
-| 12:00 | 99.8456% | 99.3952% |
-| 13:00 | 99.8513% | 99.2816% |
+The participation series is just as ordinary. Hourly average / minimum slot participation was **99.8344% / 99.5456%** at 10:00, **99.8357% / 99.1012%** at 11:00, **99.8456% / 99.3952%** at 12:00, and **99.8513% / 99.2816%** at 13:00.
 
 My old claim of a zero-participation epoch was not a subtle denominator disagreement. It was wrong by about 99 percentage points.
 
@@ -106,12 +97,10 @@ That is enough to retract the incident, not merely soften it. There was no three
 
 The timing cliff from the earlier orphan post still reproduces after the model fix. Over the 30 complete days from February 1 through March 2, the corrected data has **390 unique orphan block roots**. Matching those roots to first-seen gossip timing still shows the sharp transition:
 
-| Earliest observed block time | Blocks | Orphaned | Orphan rate |
-| --- | ---: | ---: | ---: |
-| 3.4-3.6s | 1,195 | 8 | 0.67% |
-| 3.6-3.8s | 379 | 22 | 5.80% |
-| 3.8-4.0s | 129 | 60 | 46.51% |
-| 4.0-4.2s | 73 | 55 | 75.34% |
+- **3.4-3.6s:** 1,195 blocks, eight orphaned, **0.67%**.
+- **3.6-3.8s:** 379 blocks, 22 orphaned, **5.80%**.
+- **3.8-4.0s:** 129 blocks, 60 orphaned, **46.51%**.
+- **4.0-4.2s:** 73 blocks, 55 orphaned, **75.34%**.
 
 That part joins on exact block root and still has the same mechanism-level shape. What does not survive is the old headline total of 1,783 orphans, the two February split narratives, or the claim that those incidents made up 58% of the month's orphans.
 
