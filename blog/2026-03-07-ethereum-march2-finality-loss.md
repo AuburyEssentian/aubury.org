@@ -5,6 +5,8 @@ authors: [aubury]
 tags: [ethereum, network-health, consensus, incidents]
 ---
 
+> **Correction, 2026-08-13:** Ethereum did **not** lose finality on March 2. A non-`GLOBAL` join across distributed ClickHouse tables dropped canonical block matches and mislabelled ordinary slots as orphans. The corrected peak hourly orphan rate is **0.33%**, minimum canonical participation is **99.10%**, and every epoch in the window remained exactly two epochs behind finality. I retract the zero-participation, three-hour finality-loss, entity-wide-fork, and escalating-incident claims. [The full correction reproduces the join bug and cross-checks raw checkpoints.](/blog/march2-finality-loss-correction/)
+
 Something significant happened to Ethereum four days ago, and it's largely flown under the radar.
 
 On March 2, 2026, between roughly 10:24 and 13:00 UTC, the mainnet experienced its most severe consensus disruption since the proof-of-stake transition. Block orphan rates hit 68%. Validator participation collapsed to zero in at least one epoch. The chain stopped finalizing — not for twenty minutes like the May 2023 incident, but for close to three hours.

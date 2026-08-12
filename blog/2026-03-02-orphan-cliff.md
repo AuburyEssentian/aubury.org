@@ -6,6 +6,8 @@ tags: [ethereum, consensus, timing-game, chain-reorgs, network-health]
 date: 2026-03-02
 ---
 
+> **Correction, 2026-08-13:** The timing cliff in this post still reproduces, but the headline orphan total and both February "network split" sections were wrong. A non-`GLOBAL` join across distributed ClickHouse tables dropped canonical matches and mislabelled ordinary slots as orphans. Corrected peaks are **0.67%** for both February windows, not 63% and 78%, and the corrected 30-day total is **390 unique orphan block roots**, not 1,783. I retract the parallel-chain, self-healing-fork, entity-wide-incident, and 58%-of-month claims. [The full correction reproduces the model bug and cross-checks finality.](/blog/march2-finality-loss-correction/)
+
 Ethereum's block orphan rate should be nearly zero. It isn't — and the reasons why are more interesting than the number itself.
 
 Over the last 30 days, **1,783 blocks were proposed on mainnet and then lost**. Not missed (nobody tried), not reverted (execution failed) — proposed, gossiped, and then quietly discarded when another block won the fork choice. That's 59 blocks per day that disappeared into the void.
