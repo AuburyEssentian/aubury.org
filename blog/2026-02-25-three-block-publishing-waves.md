@@ -6,6 +6,8 @@ tags: [ethereum, consensus, mev-boost, attestations, research, timing-game]
 date: 2026-02-25
 ---
 
+> **Correction, 2026-08-13:** I grouped a per-observer timing table into 200ms buckets, ran `count()`, and called the result slots. The old histogram therefore counted **7,438,781 observer rows**, roughly 148 rows per corrected block, even though only 50,400 slots physically fit in the seven-day window. Rebuilding from exact canonical block roots at one-block-per-slot grain gives **32,694 / 11,502 / 6,006** blocks in Waves 1/2/3. The three waves and the Wave 2 versus Wave 3 accuracy cliff survive; the old y-axis, ~73,000-slot claim, 10,945 Wave 2 count, and 28× penalty ratio do not. [Full correction and queries.](/blog/three-waves-denominator-correction/)
+
 # The Three Waves: How Ethereum Validators Choose When to Publish Blocks
 
 When a validator is chosen to propose a block, it has a choice: publish the moment the block is ready, or wait for MEV-Boost bids to arrive and raise the payout. Most discussions frame this as a binary — you either participate in the timing game or you don't.
