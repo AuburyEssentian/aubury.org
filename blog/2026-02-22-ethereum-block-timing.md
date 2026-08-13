@@ -6,6 +6,10 @@ tags: [execution, consensus, ethereum, performance]
 date: 2026-02-22
 ---
 
+:::warning Correction — 14 August 2026
+This post mixed protocol payload timestamps with block-arrival timing. In a fixed seven-day reconstruction, consecutive canonical execution timestamps were **12 seconds** apart for 50,011 intervals and **24 seconds** apart for 194 intervals. The 24-second cases matched **129 missed + 65 orphaned slots**; they were not a fuzzy tail of late-arriving blocks. The 52,104-block headline also exceeded the physical ceiling of 50,400 scheduled slots, and the pooled execution-client ranking was not a fixed-cohort benchmark. See [the full correction](/blog/block-interval-empty-slot-correction/).
+:::
+
 Analyzing 52,104 blocks over 7 days: mean interval is 12.05s, median is 12s. Only 0.38% of blocks are delayed beyond 12 seconds. The network maintains remarkably tight timing.
 
 <!-- truncate -->
