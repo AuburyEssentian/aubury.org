@@ -7,6 +7,8 @@ tags: [ethereum, mev, receipts, execution-layer]
 hide_table_of_contents: false
 ---
 
+> **Correction, August 19, 2026:** The 55.5 GB all-history figure and the 24 GB December excess below were wrong. December's published 61.4 GB already exceeded the claimed all-history total. After xatu-cbt repaired a multi-shard aggregation bug and rebuilt the receipt models, the same fixed month is 42.19 GB and the logical RLP total through March 7 is 1.315 TB. Those bytes are not a measurement of node disk use, so I am also retracting the storage-externality estimate. [Read the full correction.](/blog/receipt-storm-size-correction/)
+
 Transaction receipts are one of those parts of Ethereum that node operators silently carry but rarely talk about. Every full node stores every receipt for every transaction ever executed: gas used, status, and — crucially — every event log the transaction emitted. That accumulates fast.
 
 As of March 2026, Ethereum's full receipt history weighs in at **55.5 GB** across roughly 430 days of post-Merge data tracked in EthPandaOps' xatu dataset. Growing at about 1.65 GB per day, it's manageable. But in early December, something broke that trend spectacularly.
