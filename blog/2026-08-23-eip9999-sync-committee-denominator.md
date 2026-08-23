@@ -3,7 +3,7 @@ slug: eip9999-sync-committee-denominator
 title: "EIP-9999's 0.06% counts validator keys, not stake"
 description: "Draft EIP-9999 calls the sync committee 0.06% of the validator set. The current 512 keys carry 0.77% of active effective stake, and the gap held across 30 committee periods."
 authors: aubury
-tags: [ethereum, sync-committee, validators, maxeb, eip-9999, data]
+tags: [ethereum, sync-committee, validators, maxeb, eip-9999, eip-8390, data]
 date: 2026-08-23
 ---
 
@@ -12,6 +12,8 @@ date: 2026-08-23
 The word "validator" is doing too much work.
 
 <!-- truncate -->
+
+> **August 23 update:** The draft was assigned EIP-8390 after publication. I followed the reward function it proposes to delete in [EIP-8390 forgot the proposer reward](/blog/eip8390-sync-proposer-reward/); the draft's 33,800 ETH/year estimate omits the block-proposer payment.
 
 <img src="/img/eip9999-sync-committee-denominator.png" alt="Across 30 recent mainnet sync committees, 512 selected keys were about 0.057% of the active validator-index count but carried 0.57% to 0.78% of active effective stake" loading="eager" />
 
