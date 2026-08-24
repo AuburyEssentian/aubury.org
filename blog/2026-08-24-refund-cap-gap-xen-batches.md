@@ -11,6 +11,8 @@ date: 2026-08-24
 
 Instead, **895 calls into two XEN batch-minter contracts made 90.9% of the gap** between the peak refund counter and the refund that actually reached transaction receipts.
 
+> **Correction, 24 August 2026:** I wrote below that EIP-7778 already kept block gas accounting before refunds and that one CoinTool call did not make its block cheaper. EIP-7778 is scheduled for Glamsterdam, not active on mainnet. Under current rules, refunds lower both receipt gas and the gas counted in the block. [The correction and block-level backcast found at least 2,405 recent blocks above their historical gas limits before refunds](/blog/eip7778-refunds-over-gas-limit/). The XEN concentration result in this post survives.
+
 <!-- truncate -->
 
 <img src="/img/refund-cap-gap-xen-batches.png" alt="In an exact 1.92 million-transaction legacy cohort from June 30 through July 13, 2026, XEN Torrent made 67.8% and CoinTool XEN made 23.1% of the 1.58 billion-gas gap between peak refund counters and receipt-applied refunds; 99.88% of the gap was on cap-binding calls" loading="eager" />
